@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: postgres
+  password: 1234
+  host: postgres
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: bookingsync_development
+test:
+  <<: *default
+  database: bookingsync_test
+
+production:
+  <<: *default
+  database: bookingsync_production
+

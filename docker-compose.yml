@@ -1,0 +1,44 @@
+backend:
+  build: ./backend
+  command: bash start.sh
+  volumes:
+    - ./backend:/app:rw
+  ports:
+    - "3000"
+  links:
+    - postgres
+
+frontend:
+  build: ./frontend
+  entrypoint: []
+  command: ember server
+  volumes:
+    - ./frontend:/myapp
+    - ~/.ssh/:/root/.ssh
+  links:
+    - backend
+  ports:
+    - "4200"
+    - "7357"
+
+nginx:
+  build: ./nginx
+  command: nginx -g 'daemon off;'
+  ports:
+    - "3000:80"
+  environment:
+    - NGINX_HOST=127.0.0.1
+    - NGINX_PORT=80
+  links:
+    - backend
+    - frontend
+
+postgres:
+  image: macadmins/postgres
+  ports:
+    - '5432:5432'
+  environment:
+    - DB_NAME=postgres
+    - DB_PASS=1234
+  volumes:
+    - ./db_pg:/var/lib/postgresql/data
