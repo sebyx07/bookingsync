@@ -1,5 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Rental, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  [:name, :daily_rate].each do |field|
+    it "presence_of_#{field}" do
+      is_expected.to validate_presence_of(field)
+    end
+  end
 end

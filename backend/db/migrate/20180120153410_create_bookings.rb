@@ -4,7 +4,7 @@ class CreateBookings < ActiveRecord::Migration[5.1]
       t.datetime :start_at
       t.datetime :end_at
       t.string :client_email
-      t.decimal :price
+      t.decimal :price, precision: 8, scale: 2
     end
   end
 end
