@@ -7,6 +7,9 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
+  this.route('rentals', {path: ''}, function() {
+    this.route('show', {path: 'rentals/:id'});
+  });
 });
 
 export default Router;
