@@ -15,8 +15,6 @@ frontend:
   volumes:
     - ./frontend:/myapp
     - ~/.ssh/:/root/.ssh
-  links:
-    - backend
   ports:
     - "4200"
     - "7357"
