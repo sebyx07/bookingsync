@@ -1,7 +1,6 @@
 import Component from '@ember/component';
-import DataComponent from '../../mixins/data-component';
-import InfiniteScroll from '../../mixins/infinite-scroll';
+import GeneralList from '../../mixins/general-list';
 
-export default Component.extend(DataComponent, InfiniteScroll, {
+export default Component.extend(GeneralList, {
   modelName: 'rental'
 });

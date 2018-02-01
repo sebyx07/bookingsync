@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180121101916) do
+ActiveRecord::Schema.define(version: 20180201071608) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,14 +19,16 @@ ActiveRecord::Schema.define(version: 20180121101916) do
     t.datetime "start_at"
     t.datetime "end_at"
     t.string "client_email"
-    t.decimal "price"
+    t.decimal "price", precision: 8, scale: 2
     t.bigint "rental_id"
+    t.index ["end_at"], name: "index_bookings_on_end_at"
     t.index ["rental_id"], name: "index_bookings_on_rental_id"
+    t.index ["start_at"], name: "index_bookings_on_start_at"
   end
 
   create_table "rentals", force: :cascade do |t|
     t.string "name"
-    t.decimal "daily_rate"
+    t.decimal "daily_rate", precision: 8, scale: 2
   end
 
 end

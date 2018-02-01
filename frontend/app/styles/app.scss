@@ -1,2 +1,12 @@
 @import 'bootstrap';
 @import "pod-styles";
+
+.main-content{
+  margin-top: 2em;
+}
+
+.infinite-list{
+  height: 80em;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}

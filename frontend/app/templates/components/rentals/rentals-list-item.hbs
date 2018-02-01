@@ -1,0 +1,24 @@
+{{#forms/auto-save-form model=booking}}
+  <div class="form-group">
+    <div class="col-sm-12 col-md-4">
+      <label for="email">Name</label>
+      {{input name="name" value=rental.name class="form-control" placeholder="Rental Name"}}
+    </div>
+    <div class="col-sm-12 col-md-4">
+      <label for="price">Daily Rate</label>
+      {{input name="dailyRate" value=rental.dailyRate class="form-control" placeholder="Rental Daily Rate" type="number" min="1"}}
+    </div>
+  </div>
+{{/forms/auto-save-form}}
+
+<div class="col-sm-12 col-md-2 actions">
+  <button class="btn btn-danger btn-block" {{action "delete"}}>
+    Delete
+  </button>
+</div>
+
+<div class="col-sm-12 col-md-2 actions">
+  {{#link-to "rentals.show" rental.id class="btn btn-primary btn-block"}}
+    Bookings
+  {{/link-to}}
+</div>

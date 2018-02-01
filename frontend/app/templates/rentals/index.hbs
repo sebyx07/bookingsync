@@ -1,1 +1,11 @@
-{{outlet}}
+{{#rentals/rentals-list class="well" as |model|}}
+  {{#page/page-modal buttonText="Create New Rental"}}
+    {{rentals/rental-new-form list=model}}
+  {{/page/page-modal}}
+
+  <ul class="list-group infinite-list">
+    {{#each model as |rental|}}
+      {{rentals/rentals-list-item rental=rental}}
+    {{/each}}
+  </ul>
+{{/rentals/rentals-list}}

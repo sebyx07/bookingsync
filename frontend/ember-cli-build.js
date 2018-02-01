@@ -6,6 +6,10 @@ module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
     // Add options here
   });
+  app.import('node_modules/toastr/build/toastr.min.js');
+  app.import('node_modules/toastr/build/toastr.css');
+  app.import('node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css');
+  app.import('node_modules/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js');
 
   // Use `app.import` to add additional libraries to the generated
   // output files.

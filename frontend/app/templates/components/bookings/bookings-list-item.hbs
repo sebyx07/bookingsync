@@ -1,0 +1,29 @@
+{{#forms/auto-save-form model=booking}}
+  <div class="form-group">
+    <div class="col-sm-12 col-md-6">
+      <label for="email">Email</label>
+      {{input name="email" value=booking.clientEmail class="form-control" placeholder="Client Email"}}
+    </div>
+    <div class="col-sm-12 col-md-6">
+      <label for="price">Price</label>
+      {{input name="price" value=booking.price class="form-control" placeholder="Price" type="number"}}
+    </div>
+
+    <div class="col-sm-12 col-md-6">
+      <label for="start-at">Start At</label>
+      {{forms/date-picker-input name="start-at" value=booking.startAt class="form-control"}}
+    </div>
+
+    <div class="col-sm-12 col-md-6">
+      <label for="end-at">End At</label>
+      {{forms/date-picker-input name="end-at" value=booking.endAt class="form-control"}}
+    </div>
+  </div>
+{{/forms/auto-save-form}}
+
+<div class="col-sm-12 col-md-3 col-md-offset-9">
+  <hr />
+  <button class="btn btn-danger btn-block" {{action "delete"}}>
+    Delete
+  </button>
+</div>

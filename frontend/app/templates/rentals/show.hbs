@@ -1,1 +1,19 @@
-{{outlet}}
+<div class="row">
+  <div class="well col-s12">
+    <h3>
+      {{model.name}}
+    </h3>
+
+    {{#bookings/bookings-list rental=model as |bookings|}}
+      {{#page/page-modal buttonText="Create New Booking"}}
+        {{bookings/booking-new-form list=bookings rental=model}}
+      {{/page/page-modal}}
+
+      <ul class="list-group infinite-list">
+        {{#each bookings as |booking|}}
+          {{bookings/bookings-list-item booking=booking class="row"}}
+        {{/each}}
+      </ul>
+    {{/bookings/bookings-list}}
+  </div>
+</div>

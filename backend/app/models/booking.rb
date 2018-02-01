@@ -10,7 +10,7 @@ class Booking < ApplicationRecord
 
   validate :dates_not_overlap, :minimum_period
 
-  before_save :set_price
+  before_save :set_price, :set_correct_date
 
   def number_of_days
     (end_at.present? && start_at.present?) ? (end_at.to_date - start_at.to_date).to_i : 0
@@ -21,7 +21,9 @@ class Booking < ApplicationRecord
   end
 
   def dates_not_overlap
-    count = self.rental&.bookings&.where('end_at > ? OR start_at < ?', start_at, end_at)&.count
+    count = Booking.where('id <> ? AND rental_id = ? AND start_at < ? AND ? < end_at',
+                          id, rental_id, end_at, start_at).count
+
     if count && count > 0
       errors.add(:start_at, 'date overlaps with another booking')
       errors.add(:end_at, 'date overlaps with another booking')
@@ -31,6 +33,13 @@ class Booking < ApplicationRecord
   def minimum_period
     if number_of_days < 1
       errors.add(:end_at, 'minimum period is 1 day')
+    end
+  end
+
+  def set_correct_date
+    [:start_at, :end_at].each do |date|
+      correct_date = self.send(date)&.change(hour: 12, min: 0, sec: 0)
+      self.send("#{date}=", correct_date)
     end
   end
 

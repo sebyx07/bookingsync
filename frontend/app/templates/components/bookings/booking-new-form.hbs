@@ -1,0 +1,30 @@
+<form class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title">Create New Rental</h4>
+  </div>
+  <div class="modal-body">
+    <div class="col-sm-12 col-md-6">
+      <label for="email">Email</label>
+      {{input name="email" value=booking.clientEmail class="form-control" placeholder="Client Email"}}
+    </div>
+    <div class="col-sm-12 col-md-6">
+      <label for="price">Price</label>
+      {{input name="price" value=booking.price class="form-control" placeholder="Price" type="number"}}
+    </div>
+
+    <div class="col-sm-12 col-md-6">
+      <label for="start-at">Start At</label>
+      {{forms/date-picker-input name="start-at" value=booking.startAt class="form-control"}}
+    </div>
+
+    <div class="col-sm-12 col-md-6">
+      <label for="end-at">End At</label>
+      {{forms/date-picker-input name="end-at" value=booking.endAt class="form-control"}}
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <button type="button" class="btn btn-primary" {{action "save"}}>Save</button>
+  </div>
+</form>
