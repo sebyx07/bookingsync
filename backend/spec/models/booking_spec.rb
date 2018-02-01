@@ -20,7 +20,6 @@ RSpec.describe Booking, type: :model do
       it 'overlaps with start_at' do
         previous_booking = create(:booking, start_at: 2.days.ago, end_at: 2.days.from_now)
         booking = build(:booking, start_at: Time.zone.now, end_at: 3.days.from_now, rental: previous_booking.rental)
-
         expect(booking.valid?).to be_falsey
         expect(booking.errors[:start_at]).not_to be_nil
         expect(booking.errors[:end_at]).not_to be_nil

@@ -25,3 +25,10 @@ RUN \
 # Note: npm is v3.10.8
 RUN \
 	npm install -g ember-cli@3.0.0-beta.1 yarn
+
+
+RUN cd /tmp && apt-get update && apt-get install libxss1 libappindicator1 libindicator7 -y && \
+    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
+    dpkg -i google-chrome*.deb; exit 0
+
+RUN apt-get install -f -y

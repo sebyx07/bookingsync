@@ -21,9 +21,14 @@ class Booking < ApplicationRecord
   end
 
   def dates_not_overlap
-    count = Booking.where('id <> ? AND rental_id = ? AND start_at < ? AND ? < end_at',
-                          id, rental_id, end_at, start_at).count
+    query = Booking.where('rental_id = ? AND start_at < ? AND ? < end_at',
+                           rental_id, end_at, start_at)
 
+    if id.present?
+      query = query.where('id <> ?', id)
+    end
+
+    count = query.count
     if count && count > 0
       errors.add(:start_at, 'date overlaps with another booking')
       errors.add(:end_at, 'date overlaps with another booking')
